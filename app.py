@@ -59,10 +59,13 @@ def predict():
 
     # Model ile tahmin yap
     probabilities = model.predict_proba(user_features)
+    print(f"{probabilities=}")
 
     # En yüksek üç olasılığı seç
     top_3_indices = np.argsort(probabilities[0])[-3:][::-1]
+    print(f"{top_3_indices=}")
     top_3_activities = label_encoder.inverse_transform(top_3_indices)
+    print(f"{top_3_activities=}")
 
     return jsonify({
         'predictions': top_3_activities.tolist()
